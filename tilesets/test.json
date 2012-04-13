@@ -1,0 +1,9 @@
+{
+	"name": "test",
+	"filename": "test.png",
+	"tilesize": [32, 32],
+	"setsize": [256, 128],
+	"names": [
+		"glider0", "glider1", "glider2", "glider3"
+	]
+}
