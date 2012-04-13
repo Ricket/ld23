@@ -1,16 +1,11 @@
-define([], function() {
+define(['images'], function(images) {
 	var tilesets;
 
 	tilesets = {};
 
 	function parseTileset(tileset) {
-		var tsImg;
-
-		tsImg = new Image(tileset.setsize[0], tileset.setsize[1]);
-		tsImg.src = 'tilesets/' + tileset.filename;
-
 		tilesets[tileset.name] = {
-			image: tsImg,
+			image: images.loadImage('tilesets/' + tileset.filename),
 			size: tileset.setsize,
 			tilesize: tileset.tilesize,
 			tilenames: tileset.names,
