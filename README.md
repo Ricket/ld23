@@ -1,10 +1,10 @@
 Ludum Dare #23 - Theme ???
 ==========================
 
-Tasks I want the framework/engine to be able to do (EASILY) before the start of LD23:
+Tasks the framework/engine should be able to do (EASILY) before the start of LD23:
 
 - ~~preload images~~
-- draw image
+- ~~draw image~~
 - ~~load tileset, draw tiles from it~~
 - animate from tiles in a tileset, specifying rate
 - sprite
