@@ -1,3 +1,6 @@
+window.CANVAS_WIDTH = 800;
+window.CANVAS_HEIGHT = 600;
+
 require([], function() {
     var canvas, ctx;
 
@@ -18,5 +21,8 @@ require([], function() {
     (function drawLoop() {
     	requestAnimFrame(drawLoop);
     	// render here
+    	ctx.fillStyle = "#ff0000";
+    	ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
     })();
 });
