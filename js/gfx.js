@@ -1,4 +1,4 @@
-define(['tileset'], function(tileset) {
+define(['tileset', 'images'], function(tileset, images) {
 	var $canvas, canvas, ctx;
 	var WIDTH = 800;
 	var HEIGHT = 600;
@@ -31,6 +31,16 @@ define(['tileset'], function(tileset) {
 			scaleY = scaleY || scaleX || 1.0; // if only one scale is specified, scale it uniformly
 			scaleX = scaleX || 1.0;
 			ctx.drawImage(tile[0], tile[1], tile[2], tile[3], tile[4], x, y, scaleX*tile[3], scaleY*tile[4]);
+		},
+		drawImage : function(image, x, y, width, height) {
+			if(typeof(image) == "string") {
+				image = images.loadImage(image);
+			}
+			if(width && height) {
+				ctx.drawImage(image, x, y, width, height);
+			} else {
+				ctx.drawImage(image, x, y);
+			}
 		}
 	};
 });
