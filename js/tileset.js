@@ -25,7 +25,8 @@ define([], function() {
 		},
 		getTile: function(tilesetName, tilename) {
 			if(tileset.loadedTileset(tilesetName)) {
-				return [tilesetImg, sx, sy, sw, sh];
+				return [tilesets[tilesetName].image,
+					0, 0, tilesets[tilesetName].tilesize[0], tilesets[tilesetName].tilesize[1]];
 			} else {
 				return null;
 			}
