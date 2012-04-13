@@ -16,7 +16,7 @@ define([], function() {
 		};
 	}
 
-	return {
+	var tileset = {
 		loadTileset: function(name) {
 			$.getJSON('tilesets/' + name + '.json', parseTileset);
 		},
@@ -24,11 +24,12 @@ define([], function() {
 			return (name in tilesets) && (tilesets[name].image.complete == true);
 		},
 		getTile: function(tilesetName, tilename) {
-			if(loadedTileset(tilesetName)) {
+			if(tileset.loadedTileset(tilesetName)) {
 				return [tilesetImg, sx, sy, sw, sh];
 			} else {
 				return null;
 			}
 		}
 	};
+	return tileset;
 });
