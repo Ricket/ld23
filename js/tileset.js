@@ -16,7 +16,7 @@ define(['images'], function(images) {
 
 	function findCoords(tileset, tile) {
 		if(!(tileset in tilesets)) {
-			console.log("tileset " + tileset + " not found");
+			console.error("tileset " + tileset + " not found");
 			return null;
 		}
 
@@ -25,7 +25,7 @@ define(['images'], function(images) {
 		while(idx < ts.tilenames.length && ts.tilenames[idx] != tile) idx++;
 
 		if(idx == ts.tilenames.length) {
-			console.log(tile + " not found in tileset " + tileset);
+			console.error(tile + " not found in tileset " + tileset);
 			return null;
 		}
 
