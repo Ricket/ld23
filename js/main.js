@@ -8,10 +8,14 @@ require(['gfx', 'tileset'], function(gfx, tileset) {
 
     (function drawLoop() {
     	requestAnimFrame(drawLoop);
+        var now = (new Date()).getTime();
+
     	gfx.clear("#00ff00");
     	if(tileset.loadedTileset('test')) {
-    		// TODO obviously don't call this every single time; needs to be cached
-            var tile = tileset.getTile('test', 'glider0');
+    		// TODO obviously need to cache these values
+            var whichGlider = Math.floor((now / 500) % 4);
+            console.log(whichGlider);
+            var tile = tileset.getTile('test', 'glider' + whichGlider);
     		gfx.drawTile(tile, 0, 0);
     	}
     })();
