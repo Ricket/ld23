@@ -11,8 +11,16 @@ define([], function() {
 			images[url] = newimg;
 			return newimg;
 		},
-		isLoaded : function (url) {
-			return (url in images) && images[url].complete;
+		isLoaded : function (urlOrImage) {
+			if(typeof(urlOrImage) == "string") {
+				if(urlOrImage in images) {
+					urlOrImage = images[urlOrImage];
+				} else {
+					console.error('no such image: ' + urlOrImage);
+					return false;
+				}
+			}
+			return urlOrImage.complete;
 		}
 	};
 });
