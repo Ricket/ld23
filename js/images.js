@@ -2,7 +2,7 @@ define([], function() {
 	var images = {};
 
 	return {
-		loadImage : function (url, oncomplete) {
+		loadImage: function (url, oncomplete) {
 			if(url in images) {
 				if(oncomplete) {
 					if(images[url].complete) {
@@ -25,7 +25,7 @@ define([], function() {
 			images[url] = newimg;
 			return newimg;
 		},
-		isLoaded : function (urlOrImage) {
+		isLoaded: function (urlOrImage) {
 			if(typeof(urlOrImage) == "string") {
 				if(urlOrImage in images) {
 					urlOrImage = images[urlOrImage];

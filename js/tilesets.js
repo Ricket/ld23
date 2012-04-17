@@ -1,7 +1,5 @@
 define(['images'], function(images) {
-	var tilesets;
-
-	tilesets = {};
+	var tilesets = {};
 
 	function parseTileset(tileset) {
 		tilesets[tileset.name] = {
