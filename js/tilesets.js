@@ -33,7 +33,7 @@ define(['images'], function(images) {
 		return [x * ts.tilesize[0], y * ts.tilesize[1], ts.tilesize[0], ts.tilesize[1]];
 	}
 
-	var tileset = {
+	return {
 		loadTileset: function(name) {
 			$.getJSON('tilesets/' + name + '.json', parseTileset);
 		},
@@ -41,7 +41,7 @@ define(['images'], function(images) {
 			return (name in tilesets) && (tilesets[name].image.complete == true);
 		},
 		getTile: function(tilesetName, tilename) {
-			if(tileset.loadedTileset(tilesetName)) {
+			if(this.loadedTileset(tilesetName)) {
 				var coords = findCoords(tilesetName, tilename);
 				return [tilesets[tilesetName].image,
 					coords[0], coords[1], coords[2], coords[3]];
@@ -50,5 +50,4 @@ define(['images'], function(images) {
 			}
 		}
 	};
-	return tileset;
 });

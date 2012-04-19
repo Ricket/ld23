@@ -17,7 +17,7 @@ define(['images'], function(images) {
 			$canvas = $('#'+id);
 			canvas = $canvas[0];
 
-			setSize(WIDTH, HEIGHT);
+			this.setSize(WIDTH, HEIGHT);
 
 			ctx = canvas.getContext('2d');
 		},
