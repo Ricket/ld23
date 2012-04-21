@@ -23,3 +23,24 @@ These depend on what type of game we're making... (top down shmup? side
 scrolling platformer?)
 Maybe we should just add them during LD when we decide this.
 */
+define(['tilesets', 'gfx'], function(tilesets, gfx) {
+	var sprites = {};
+
+	return {
+		add: function(sprite) {
+			sprites[sprite.id] = sprite;
+		},
+		remove: function(sprite) {
+			delete sprites[sprite.id];
+		},
+		drawAll: function() {
+			for(var i in sprites) {
+				var sprite = sprites[i];
+				if(tilesets.loadedTileset(sprite.tileset)) {
+					var tile = tilesets.getTile(sprite.tileset, sprite.tile);
+					gfx.drawTile(tile, sprite.x, sprite.y);
+				}
+			}
+		}
+	};
+});

@@ -1,11 +1,14 @@
 window.CANVAS_WIDTH = 800;
 window.CANVAS_HEIGHT = 600;
 
-require(['gfx', 'tilesets', 'images'], function(gfx, tilesets, images) {
+require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites'], function(gfx, tilesets, images, Sprite, sprites) {
 
 	gfx.loadCanvas('maincanvas');
 	tilesets.loadTileset('test');
     images.loadImage('img/dude.png');
+
+    var player = new Sprite('test', 'glider0', 5, 5);
+    sprites.add(player);
 
     (function drawLoop() {
     	requestAnimFrame(drawLoop);
@@ -21,5 +24,7 @@ require(['gfx', 'tilesets', 'images'], function(gfx, tilesets, images) {
         if(images.isLoaded('img/dude.png')) {
             gfx.drawImage('img/dude.png', 32, 0);
         }
+
+        sprites.drawAll();
     })();
 });
