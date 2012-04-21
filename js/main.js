@@ -1,7 +1,7 @@
 window.CANVAS_WIDTH = 800;
 window.CANVAS_HEIGHT = 600;
 
-require(['gfx', 'tilesets', 'keyboard', 'mouse'], function(gfx, tilesets, keyboard, mouse) {
+require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets, keyboard, mouse, math) {
 
 	var $canvas = gfx.loadCanvas('maincanvas');
     mouse.setup($canvas);
@@ -14,7 +14,10 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse'], function(gfx, tilesets, keyboa
         if(mouse.justDown(mouse.LEFT)) {
             if(gameState == 'PLACE_TURRET') {
                 // place a turret
-                turrets.push({x:mouse.x, y:mouse.y});
+
+                var turretPos = math.getNearestPointOnCircle(mouse.x, mouse.y, 400, 300, 100);
+
+                turrets.push({x:turretPos[0], y:turretPos[1]});
             }
         }
 
