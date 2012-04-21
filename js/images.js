@@ -3,6 +3,12 @@ define([], function() {
 
 	return {
 		loadImage: function (url, oncomplete) {
+			if(url.indexOf('img/') != 0) {
+				url = 'img/' + url;
+			}
+			if(url.indexOf('.png') == -1) {
+				url = url + '.png';
+			}
 			if(url in images) {
 				if(oncomplete) {
 					if(images[url].complete) {
