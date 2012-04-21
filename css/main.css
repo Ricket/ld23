@@ -3,3 +3,13 @@
 	width: 100%;
 	border: 5px solid blue;
 }
+
+body {
+	text-align:center;
+}
+#title {
+	font-family: 'Audiowide', cursive;
+}
+#description {
+	font-family: monospace;
+}
