@@ -1,17 +1,25 @@
 window.CANVAS_WIDTH = 800;
 window.CANVAS_HEIGHT = 600;
 
-require(['gfx', 'tilesets', 'keyboard'], function(gfx, tilesets, keyboard) {
+require(['gfx', 'tilesets', 'keyboard', 'mouse'], function(gfx, tilesets, keyboard, mouse) {
 
 	var $canvas = gfx.loadCanvas('maincanvas');
+    mouse.setup($canvas);
 
     var gameState = 'PLACE_TURRET';
     var turrets = [];
 
     function logicTick() {
-        // keyboard and mouse events here
+        // keyboard and mouse events
+        if(mouse.justDown(mouse.LEFT)) {
+            if(gameState == 'PLACE_TURRET') {
+                // place a turret
+                turrets.push({x:mouse.x, y:mouse.y});
+            }
+        }
 
         keyboard.tick(); // make sure to tick AFTER doing justDown/justUp checks
+        mouse.tick();
     }
 
     var last = (new Date()).getTime();
@@ -33,17 +41,4 @@ require(['gfx', 'tilesets', 'keyboard'], function(gfx, tilesets, keyboard) {
         }
 
     })();
-
-    $canvas.mousedown(function(e) {
-        if(e.which == 1) {
-            console.log('mousedown left');
-            console.log(e.offsetX + "," + e.offsetY);
-
-            if(gameState == 'PLACE_TURRET') {
-                // place a turret
-                turrets.push({x:e.offsetX, y:e.offsetY});
-                console.log(turrets);
-            }
-        }
-    });
 });
