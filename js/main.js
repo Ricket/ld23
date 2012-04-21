@@ -1,32 +1,15 @@
 window.CANVAS_WIDTH = 800;
 window.CANVAS_HEIGHT = 600;
 
-require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites', 'keyboard'], function(gfx, tilesets, images, Sprite, sprites, keyboard) {
+require(['gfx', 'tilesets', 'keyboard'], function(gfx, tilesets, keyboard) {
 
-	gfx.loadCanvas('maincanvas');
-	tilesets.loadTileset('test');
-    images.loadImage('img/dude.png');
+	var $canvas = gfx.loadCanvas('maincanvas');
 
-    var player = new Sprite('test', 'glider0', 5, 5);
-    sprites.add(player);
+    var gameState = 'PLACE_TURRET';
+    var turrets = [];
 
     function logicTick() {
-        if(keyboard.justDown(13)) {
-            console.log('you just pressed enter');
-        }
-
-        if(keyboard.isDown(37)) { // left
-            player.x -= 3;
-        }
-        if(keyboard.isDown(39)) { // right
-            player.x += 3;
-        }
-        if(keyboard.isDown(38)) { // up
-            player.y -= 3;
-        }
-        if(keyboard.isDown(40)) { // down
-            player.y += 3;
-        }
+        // keyboard and mouse events here
 
         keyboard.tick(); // make sure to tick AFTER doing justDown/justUp checks
     }
@@ -42,16 +25,25 @@ require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites', 'keyboard'], function
         }
 
     	gfx.clear("#203350");
-    	if(tilesets.loadedTileset('test')) {
-    		// TODO obviously need to cache these values
-            var whichGlider = Math.floor((now / 500) % 4);
-            var tile = tilesets.getTile('test', 'glider' + whichGlider);
-    		gfx.drawTile(tile, 0, 0);
-    	}
-        if(images.isLoaded('img/dude.png')) {
-            gfx.drawImage('img/dude.png', 32, 0);
+
+        gfx.fillCircle(400, 300, 100, "#105510");
+        for(var i in turrets) {
+            var turret = turrets[i];
+            gfx.fillCircle(turret.x, turret.y, 30, "#AA0000");
         }
 
-        sprites.drawAll();
     })();
+
+    $canvas.mousedown(function(e) {
+        if(e.which == 1) {
+            console.log('mousedown left');
+            console.log(e.offsetX + "," + e.offsetY);
+
+            if(gameState == 'PLACE_TURRET') {
+                // place a turret
+                turrets.push({x:e.offsetX, y:e.offsetY});
+                console.log(turrets);
+            }
+        }
+    });
 });

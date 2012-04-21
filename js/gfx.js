@@ -20,6 +20,8 @@ define(['images'], function(images) {
 			this.setSize(WIDTH, HEIGHT);
 
 			ctx = canvas.getContext('2d');
+
+			return $canvas;
 		},
 		setSize: function(width, height) {
 			WIDTH = width;
@@ -29,6 +31,13 @@ define(['images'], function(images) {
 		clear: function(color) {
 			ctx.fillStyle = color;
     		ctx.fillRect(0, 0, WIDTH, HEIGHT);
+		},
+		fillCircle: function(x, y, radius, color) {
+			ctx.fillStyle = color;
+			ctx.beginPath();
+			ctx.arc(x, y, radius, 0, 2*Math.PI);
+			ctx.closePath();
+			ctx.fill();
 		},
 		drawTile: function(tile, x, y, scaleX, scaleY) { /* tile returned from tilesets.getTile */
 			scaleY = scaleY || scaleX || 1.0; // if only one scale is specified, scale it uniformly
