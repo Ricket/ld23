@@ -10,29 +10,36 @@ require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites', 'keyboard'], function
     var player = new Sprite('test', 'glider0', 5, 5);
     sprites.add(player);
 
-    (function drawLoop() {
-    	requestAnimFrame(drawLoop);
-        var now = (new Date()).getTime();
-
+    function logicTick() {
         if(keyboard.justDown(13)) {
             console.log('you just pressed enter');
         }
 
         if(keyboard.isDown(37)) { // left
-            player.x -= 1;
+            player.x -= 3;
         }
         if(keyboard.isDown(39)) { // right
-            player.x += 1;
+            player.x += 3;
         }
         if(keyboard.isDown(38)) { // up
-            player.y -= 1;
+            player.y -= 3;
         }
         if(keyboard.isDown(40)) { // down
-            player.y += 1;
+            player.y += 3;
         }
 
-        /* todo insert fixed time loop here */
-        keyboard.tick(); // make sure to tick AFTER doing all the justDown/justUp checks
+        keyboard.tick(); // make sure to tick AFTER doing justDown/justUp checks
+    }
+
+    var last = (new Date()).getTime();
+    (function drawLoop() {
+    	requestAnimFrame(drawLoop);
+        var now = (new Date()).getTime();
+
+        while(last < now) {
+            logicTick();
+            last += 1000/30;
+        }
 
     	gfx.clear("#00ff00");
     	if(tilesets.loadedTileset('test')) {
