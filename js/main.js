@@ -7,34 +7,32 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
     mouse.setup($canvas);
     $canvas.disableSelection();
 
-    var gameState = 'PLACE_TURRET';
+    var gameState = 'Place a turret!';
     var turrets = [];
 
-    function logicTick() {
+    setInterval(function() {
         // keyboard and mouse events
         if(mouse.justDown(mouse.LEFT)) {
-            if(gameState == 'PLACE_TURRET') {
+            if(gameState == 'Place a turret!') {
                 // place a turret
 
                 var newturret = math.getNearestPointOnCircle(mouse.x, mouse.y, 400, 300, 100);
 
                 turrets.push({x:newturret[0], y:newturret[1], rot:newturret[2]});
+
+                gameState = 'Shoot stuff!';
+            }
+            else if(gameState == 'Shoot stuff!') {
+
             }
         }
 
         keyboard.tick(); // make sure to tick AFTER doing justDown/justUp checks
         mouse.tick();
-    }
+    }, 1000/30);
 
-    var last = (new Date()).getTime();
     (function drawLoop() {
     	requestAnimFrame(drawLoop);
-        var now = (new Date()).getTime();
-
-        while(last < now) {
-            logicTick();
-            last += 1000/30;
-        }
 
     	gfx.clear("#203350");
 
@@ -43,6 +41,8 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
             var turret = turrets[i];
             gfx.drawImageRot('turret', turret.x, turret.y, turret.rot);
         }
+
+        gfx.drawText(gameState, 0, 0, 2.5, "#da6932");
 
     })();
 });

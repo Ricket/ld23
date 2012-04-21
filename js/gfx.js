@@ -71,6 +71,17 @@ define(['images'], function(images) {
 				ctx.rotate(-angle); // TODO why doesn't resetTransform exist in Chrome???
 				ctx.translate(-x, -y);
 			}
+		},
+		drawText: function(str, x, y, size, color, baseline) {
+			baseline = baseline || "top";
+
+			ctx.textBaseline = baseline;
+			ctx.fillStyle = color;
+			ctx.translate(x,y);
+			ctx.scale(size, size);
+			ctx.fillText(str, 0, 0);
+			ctx.scale(1/size, 1/size);
+			ctx.translate(-x,-y);
 		}
 	};
 });
