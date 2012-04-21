@@ -40,7 +40,7 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
         gfx.fillCircle(400, 300, 100, "#105510");
         for(var i in turrets) {
             var turret = turrets[i];
-            gfx.drawImageRot('dude', turret.x, turret.y, turret.rot);
+            gfx.drawImageRot('turret', turret.x, turret.y, turret.rot);
         }
 
     })();
