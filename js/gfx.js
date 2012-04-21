@@ -48,10 +48,28 @@ define(['images'], function(images) {
 			if(typeof(image) == "string") {
 				image = images.loadImage(image);
 			}
-			if(width && height) {
-				ctx.drawImage(image, x, y, width, height);
-			} else {
-				ctx.drawImage(image, x, y);
+			if(image.complete) {
+				if(width && height) {
+					ctx.drawImage(image, x, y, width, height);
+				} else {
+					ctx.drawImage(image, x, y);
+				}
+			}
+		},
+		drawImageRot: function(image, x, y, angle) {
+			if(typeof(image) == "string") {
+				image = images.loadImage(image);
+			}
+			if(image.complete) {
+				ctx.translate(x, y);
+				ctx.rotate(angle);
+				ctx.translate(-image.width/2, -image.height/2);
+				
+				ctx.drawImage(image, 0, 0);
+
+				ctx.translate(image.width/2, image.height/2);
+				ctx.rotate(-angle); // TODO why doesn't resetTransform exist in Chrome???
+				ctx.translate(-x, -y);
 			}
 		}
 	};
