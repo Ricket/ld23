@@ -5,6 +5,7 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
 
 	var $canvas = gfx.loadCanvas('maincanvas');
     mouse.setup($canvas);
+    $canvas.disableSelection();
 
     var gameState = 'PLACE_TURRET';
     var turrets = [];
@@ -45,3 +46,22 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
 
     })();
 });
+
+// jQuery disableSelection addon function
+// copied from: http://stackoverflow.com/a/2700029/47493
+(function($){
+    $.fn.disableSelection = function() {
+        return this.each(function() {           
+            $(this).attr('unselectable', 'on')
+                   .css({
+                       '-moz-user-select':'none',
+                       '-webkit-user-select':'none',
+                       'user-select':'none',
+                       '-ms-user-select':'none'
+                   })
+                   .each(function() {
+                       this.onselectstart = function() { return false; };
+                   });
+        });
+    };
+})(jQuery);
