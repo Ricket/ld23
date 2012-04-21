@@ -15,9 +15,9 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
             if(gameState == 'PLACE_TURRET') {
                 // place a turret
 
-                var turretPos = math.getNearestPointOnCircle(mouse.x, mouse.y, 400, 300, 100);
+                var newturret = math.getNearestPointOnCircle(mouse.x, mouse.y, 400, 300, 100);
 
-                turrets.push({x:turretPos[0], y:turretPos[1]});
+                turrets.push({x:newturret[0], y:newturret[1], rot:newturret[2]});
             }
         }
 
@@ -40,7 +40,7 @@ require(['gfx', 'tilesets', 'keyboard', 'mouse', 'math'], function(gfx, tilesets
         gfx.fillCircle(400, 300, 100, "#105510");
         for(var i in turrets) {
             var turret = turrets[i];
-            gfx.fillCircle(turret.x, turret.y, 30, "#AA0000");
+            gfx.drawImageRot('dude', turret.x, turret.y, turret.rot);
         }
 
     })();
