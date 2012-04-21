@@ -41,7 +41,7 @@ require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites', 'keyboard'], function
             last += 1000/30;
         }
 
-    	gfx.clear("#00ff00");
+    	gfx.clear("#203350");
     	if(tilesets.loadedTileset('test')) {
     		// TODO obviously need to cache these values
             var whichGlider = Math.floor((now / 500) % 4);
