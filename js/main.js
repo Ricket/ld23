@@ -1,7 +1,7 @@
 window.CANVAS_WIDTH = 800;
 window.CANVAS_HEIGHT = 600;
 
-require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites'], function(gfx, tilesets, images, Sprite, sprites) {
+require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites', 'keyboard'], function(gfx, tilesets, images, Sprite, sprites, keyboard) {
 
 	gfx.loadCanvas('maincanvas');
 	tilesets.loadTileset('test');
@@ -13,6 +13,26 @@ require(['gfx', 'tilesets', 'images', 'Sprite', 'sprites'], function(gfx, tilese
     (function drawLoop() {
     	requestAnimFrame(drawLoop);
         var now = (new Date()).getTime();
+
+        if(keyboard.justDown(13)) {
+            console.log('you just pressed enter');
+        }
+
+        if(keyboard.isDown(37)) { // left
+            player.x -= 1;
+        }
+        if(keyboard.isDown(39)) { // right
+            player.x += 1;
+        }
+        if(keyboard.isDown(38)) { // up
+            player.y -= 1;
+        }
+        if(keyboard.isDown(40)) { // down
+            player.y += 1;
+        }
+
+        /* todo insert fixed time loop here */
+        keyboard.tick(); // make sure to tick AFTER doing all the justDown/justUp checks
 
     	gfx.clear("#00ff00");
     	if(tilesets.loadedTileset('test')) {
