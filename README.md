@@ -1,16 +1,4 @@
-Ludum Dare #23 - Theme ???
-==========================
+Ludum Dare #23 - Theme: Tiny World
+==================================
 
-Tasks the framework/engine should be able to do (EASILY) before the start of LD23:
-
-- ~~preload images~~
-- ~~draw image~~
-- ~~load tileset, draw tiles from it~~
-- animate from tiles in a tileset, specifying rate
-- sprite
-  - position, velocity
-  - collision, events
-  - jumping?
-  - sprite editor/placement?
-- keyboard and mouse
-- load and play sound
+SAVE THE TINY WORLD!
